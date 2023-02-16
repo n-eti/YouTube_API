@@ -31,5 +31,9 @@ def add_comment(request):
     
 
 @api_view(['PUT'])
+@permission_classes([IsAuthenticated])
 def edit_comment(request, comment_id):
+    print(request)
+    comment = CommentSerializer(data=request.data)
+    
     return Response(comment_id)
