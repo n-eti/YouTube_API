@@ -1,5 +1,5 @@
 from rest_framework import status
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from .models import Comment
@@ -11,15 +11,12 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 @permission_classes([AllowAny])
 def comments_list(request, video_id):
     comments = Comment.objects.filter(video_id = video_id)
-
     serializer = CommentSerializer(comments, many = True)
-
-
     return Response(serializer.data)
 
-@api_view(['PUT'])
-def edit_comment(request, comment_id):
-    return Response(comment_id)
+
+
+
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -33,3 +30,6 @@ def add_comment(request):
     
     
 
+@api_view(['PUT'])
+def edit_comment(request, comment_id):
+    return Response(comment_id)
