@@ -14,10 +14,6 @@ def comments_list(request, video_id):
     serializer = CommentSerializer(comments, many = True)
     return Response(serializer.data)
 
-
-
-
-
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def add_comment(request):
@@ -27,13 +23,14 @@ def add_comment(request):
         serializer.save(user=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-    
 
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def edit_comment(request, comment_id):
     print(request)
-    comment = CommentSerializer(data=request.data)
-    
-    return Response(comment_id)
+    serializer = CommentSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    serializer.save()
+    # comment.is_valid(raise_exception=True)
+    # comment.save()
+    return Response(serializer.data)
