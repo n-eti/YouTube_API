@@ -6,10 +6,7 @@ from .models import Reply
 # Create your views here.
 
 @api_view(['GET'])
-def replies_list(request):
-    replies = Reply.objects.filter()
-
-    serializer = ReplySerializer(replies)
-
-
+def replies_list(request, comment_id):
+    replies = Reply.objects.filter(comment_id=comment_id)
+    serializer = ReplySerializer(replies, many=True)
     return Response(serializer.data)

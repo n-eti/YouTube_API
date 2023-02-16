@@ -27,10 +27,9 @@ def add_comment(request):
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def edit_comment(request, comment_id):
-    print(request)
-    serializer = CommentSerializer(data=request.data)
+    comment = get_object_or_404(Comment, id=comment_id)
+    serializer = CommentSerializer(comment, data=request.data)
     serializer.is_valid(raise_exception=True)
     serializer.save()
-    # comment.is_valid(raise_exception=True)
-    # comment.save()
     return Response(serializer.data)
+
