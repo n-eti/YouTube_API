@@ -14,6 +14,7 @@ import Footer from "./components/Footer/Footer";
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
 import SearchPage from "./pages/SearchPage/SearchPage";
+import VideoPage from "./pages/VideoPage/VideoPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<SearchPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/video/:videoId" element={<VideoPage/>}/>
       </Routes>
       <Footer />
     </div>
