@@ -6,7 +6,7 @@ const VideoPlayer = ({ videoId }) => {
         type="text/html"
         width="640"
         height="360"
-        src={``}
+        src={`/video/${videoId}`}
         frameborder="0"
       ></iframe>
     </div>
