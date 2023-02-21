@@ -15,7 +15,7 @@ const HomePage = () => {
     const fetchCars = async () => {
       try {
         let response = await axios.get("http://127.0.0.1:8000/api/cars/", config);
-        setCars(response.data);
+        setCars(response.data); 
       } catch (error) {
         console.log(error.response.data);
       }
